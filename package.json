@@ -1,0 +1,29 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "Typescript Friendly Utilities for Redux",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mytee306/redux-utils.git"
+  },
+  "keywords": [],
+  "author": "Mateja Petrovic <mateja176@gmail.com> (https://github.com/mytee306)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mytee306/redux-utils/issues"
+  },
+  "homepage": "https://github.com/mytee306/redux-utils#readme",
+  "devDependencies": {
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "redux": "^4.0.1"
+  }
+}
