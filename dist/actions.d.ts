@@ -5,8 +5,8 @@ export interface ActionWithPayload<Payload> extends Action {
     payload: Payload;
 }
 export declare type ActionCreator = () => Action;
-export declare type CreateAction = (type: string) => ActionCreator;
-export declare const createAction: CreateAction;
+export declare type CreateActionCreator = (type: string) => ActionCreator;
+export declare const createActionCreator: CreateActionCreator;
 export declare type ActionCreatorWithPayload<Payload> = (payload: Payload) => ActionWithPayload<Payload>;
-export declare type CreateActionWithPayload = <Payload>(type: string) => (payload: Payload) => ActionWithPayload<Payload>;
-export declare const createActionWithPayload: CreateActionWithPayload;
+export declare type CreateActionCreatorWithPayload = <Payload>(type: string) => (payload: Payload) => ActionWithPayload<Payload>;
+export declare const createActionCreatorWithPayload: CreateActionCreatorWithPayload;

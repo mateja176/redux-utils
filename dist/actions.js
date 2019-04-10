@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
-exports.createAction = function (type) { return function () { return ({
+exports.createActionCreator = function (type) { return function () { return ({
     type: type
 }); }; };
-exports.createActionWithPayload = function (type) { return function (payload) { return ({
+exports.createActionCreatorWithPayload = function (type) { return function (payload) { return ({
     type: type,
     payload: payload
 }); }; };
