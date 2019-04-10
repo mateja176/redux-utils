@@ -1,1 +1,1 @@
-export * from "./dist/actions.d";
+export * from "./dist/actions";
