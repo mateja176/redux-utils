@@ -50,5 +50,5 @@ export declare const createActionCreatorWithPayload: CreateActionCreatorWithPayl
  * const getCountName = 'getCount'
  * const getCountType = getActionType(prefix)(getCountName)
  */
-export declare type GetActionType = (prefix: string) => (actionName: string) => string;
-export declare const getActionType: GetActionType;
+export declare type CreateActionType = (prefix: string) => (actionName: string) => string;
+export declare const createActionType: CreateActionType;

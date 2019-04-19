@@ -71,6 +71,8 @@ export const createActionCreatorWithPayload: CreateActionCreatorWithPayload = ty
  * const getCountName = 'getCount'
  * const getCountType = getActionType(prefix)(getCountName)
  */
-export type GetActionType = (prefix: string) => (actionName: string) => string;
-export const getActionType: GetActionType = prefix => actionName =>
+export type CreateActionType = (
+  prefix: string,
+) => (actionName: string) => string;
+export const createActionType: CreateActionType = prefix => actionName =>
   prefix.concat('/').concat(actionName);

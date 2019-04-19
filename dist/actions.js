@@ -18,6 +18,6 @@ exports.createActionCreatorWithPayload = function (type) { return function (payl
     type: type,
     payload: payload
 }); }; };
-exports.getActionType = function (prefix) { return function (actionName) {
+exports.createActionType = function (prefix) { return function (actionName) {
     return prefix.concat('/').concat(actionName);
 }; };
