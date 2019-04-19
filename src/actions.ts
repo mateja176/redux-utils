@@ -1,28 +1,66 @@
-import { Action as ReduxAction } from "redux"
+import { Action as ReduxAction } from 'redux';
 
-export interface Action extends ReduxAction<string> {}
+/**
+ * @example
+ * const getCountType = 'count/getCount'
+ * type GetCountType = typeof getCountType
+ * const getCount: Action<GetCountType> = { type: getCountType }
+ */
+export type Action<Type extends string> = ReduxAction<Type>;
 
-export interface ActionWithPayload<Payload> extends Action {
-  payload: Payload
+/**
+ * @example
+ * const setCountType = 'count/setCount'
+ * const SetCountType = typeof setCountType
+ * const action: ActionWithPayload<SetCountType, number> = { type: setCountType, payload: 1 }
+ */
+export interface ActionWithPayload<Type extends string, Payload>
+  extends Action<Type> {
+  payload: Payload;
 }
 
-export type ActionCreator = () => Action
+/**
+ * @example
+ * const getCountType = 'count/getCount'
+ * type GetCountType = typeof getCountType
+ * const getCount: ActionCreator<GetCountType> = () => ({ type: getCountType })
+ */
+export type ActionCreator<Type extends string> = () => Action<Type>;
 
-export type CreateActionCreator = (type: string) => ActionCreator
+export type CreateActionCreator = <Type extends string>(
+  type: Type,
+) => ActionCreator<Type>;
 
+/**
+ * @example
+ * const getCountType = 'count/getCount'
+ * const getCount = createActionCreator(getCountType)
+ */
 export const createActionCreator: CreateActionCreator = type => () => ({
   type,
-})
+});
 
-export type ActionCreatorWithPayload<Payload> = (
-  payload: Payload,
-) => ActionWithPayload<Payload>
+/**
+ * @example
+ * const setCountType = 'count/setCount'
+ * type SetCountType = typeof setCountType
+ * const setCount: ActionCreatorWithPayload<SetCountType, number> = () => ({ type: setCountType, payload: 1 })
+ */
+export type ActionCreatorWithPayload<Type extends string, Payload> = (
+  type: Type,
+) => (payload: Payload) => ActionWithPayload<Type, Payload>;
 
-export type CreateActionCreatorWithPayload = <Payload>(
-  type: string,
-) => (payload: Payload) => ActionWithPayload<Payload>
+export type CreateActionCreatorWithPayload = <Type extends string, Payload>(
+  type: Type,
+) => (payload: Payload) => ActionWithPayload<Type, Payload>;
 
+/**
+ * @example
+ * const setCountType = 'count/setCount'
+ * type SetCountType = typeof setCountType
+ * const setCount = createActionCreatorWithPayload<SetCountType, number>(setCountType)
+ */
 export const createActionCreatorWithPayload: CreateActionCreatorWithPayload = type => payload => ({
   type,
   payload,
-})
+});
