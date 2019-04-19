@@ -44,3 +44,11 @@ export declare type CreateActionCreatorWithPayload = <Type extends string, Paylo
  * const setCount = createActionCreatorWithPayload<SetCountType, number>(setCountType)
  */
 export declare const createActionCreatorWithPayload: CreateActionCreatorWithPayload;
+/**
+ * @example
+ * const prefix = 'count'
+ * const getCountName = 'getCount'
+ * const getCountType = getActionType(prefix)(getCountName)
+ */
+export declare type GetActionType = (prefix: string) => (actionName: string) => string;
+export declare const getActionType: GetActionType;
