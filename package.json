@@ -1,5 +1,6 @@
 {
-  "name": "redux-utils",
+  "name": "@mytee306/redux-utils",
+  "private": false,
   "version": "1.0.0",
   "description": "Typescript Friendly Utilities for Redux",
   "main": "dist/index.js",
