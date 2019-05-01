@@ -17,14 +17,18 @@ export const createSimpleReducer = <State>(initialState: State) => (
   }
 };
 
-export interface ActionReducerMap<State, Payload> {
-  [actionType: string]: (state: State, action: Action<Payload>) => State;
+export interface ActionReducerMap<State, A extends Action<A['payload']>> {
+  [actionType: string]: (state: State, action: A) => State;
 }
 
-export const createCustomReducer = <State, Payload>(initialState: State) => (
-  actionReducerMap: ActionReducerMap<State, Payload>,
-) => (state = initialState, action: Action<Payload>) => {
+export const createReducer = <State, A extends Action<A['payload']>>(
+  initialState: State,
+) => (actionReducerMap: ActionReducerMap<State, A>) => (
+  state = initialState,
+  action: A,
+) => {
   const { type } = action;
+
   const actionTypes = Object.keys(actionReducerMap);
 
   if (actionTypes.includes(type)) {

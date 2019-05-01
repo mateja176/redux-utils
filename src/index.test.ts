@@ -3,9 +3,8 @@ import {
   createActionCreator,
   Action,
   createPayloadActionCreator,
-  PayloadAction,
 } from './action';
-import { createCustomReducer } from './reducer';
+import { createReducer } from './reducer';
 
 export type Count = number;
 
@@ -22,8 +21,8 @@ export const decrementBy = createPayloadActionCreator<Count>(
 
 export type CountAction = Action<Count>;
 
-export default createCustomReducer<Count, Count>(0)({
+export default createReducer<Count, CountAction>(0)({
   [CountActionTypes.Increment]: count => count + 1,
-  [CountActionTypes.DecrementBy]: (count, action) =>
-    count - (action as PayloadAction<Count>).payload,
+  [CountActionTypes.DecrementBy]: (count, { payload: amount }) =>
+    count + amount,
 });
