@@ -3,8 +3,8 @@ import {
   createActionCreator,
   Action,
   createPayloadActionCreator,
-} from './action';
-import { createReducer } from './reducer';
+} from '../action';
+import { createReducer } from '../reducer';
 
 export type Count = number;
 
