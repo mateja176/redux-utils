@@ -1,30 +1,43 @@
-import { Action } from 'redux';
+/* eslint-disable indent */
+import { Action as ReduxAction } from 'redux';
 
-export type ActionCreator<A extends Action<A['type']>> = () => A;
+export type SimpleAction = ReduxAction<string>;
 
-export type CreateActionCreator = <A extends Action<A['type']>>(
-  type: A['type'],
-) => () => Action<A['type']>;
+export type ActionCreator = () => SimpleAction;
+
+export type CreateActionCreator = (type: string) => () => SimpleAction;
 export const createActionCreator: CreateActionCreator = type => () => ({
   type,
 });
 
-export type PayloadAction<Type, Payload> = Action<Type> & { payload: Payload };
+export interface PayloadAction<Payload> extends SimpleAction {
+  payload: Payload;
+}
 
-export type PayloadActionCreator<
-  Action extends PayloadAction<Action['type'], Action['payload']>
-> = (
-  payload: Action['payload'],
-) => PayloadAction<Action['type'], Action['payload']>;
+export type PayloadActionCreator<Payload> = (
+  payload: Payload,
+) => PayloadAction<Payload>;
 
-export type CreatePayloadActionCreator = <
-  Action extends PayloadAction<Action['type'], Action['payload']>
->(
-  type: Action['type'],
-) => (
-  payload: Action['payload'],
-) => PayloadAction<Action['type'], Action['payload']>;
+export type CreatePayloadActionCreator = <Payload>(
+  type: string,
+) => (payload: Payload) => PayloadAction<Payload>;
 export const createPayloadActionCreator: CreatePayloadActionCreator = type => payload => ({
   type,
   payload,
 });
+
+export type Action<Payload> = SimpleAction | PayloadAction<Payload>;
+
+const prefixActionType = (slice: string) => (actionType: string) =>
+  slice.concat(' -> ').concat(actionType);
+
+export interface ActionTypes {
+  [key: string]: string;
+}
+
+export const prefixActionTypes = (slice: string) => <A extends ActionTypes>(
+  actionTypes: A,
+) =>
+  Object.entries(actionTypes)
+    .map(([key, type]) => [key, prefixActionType(slice)(type)])
+    .reduce((types, [key, type]) => ({ ...types, [key]: type }), {} as A);
