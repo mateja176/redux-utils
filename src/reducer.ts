@@ -34,7 +34,7 @@ export const createCustomReducer = <State, Payload>(initialState: State) => (
   }
 };
 
-export const createReducer = <State>(initialState: State) => (
+export const createSpecializedReducer = <State>(initialState: State) => (
   actionTypes: string[],
 ) => (state = initialState, { type, payload }: PayloadAction<State>) => {
   if (actionTypes.includes(type)) {
