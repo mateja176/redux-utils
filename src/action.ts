@@ -5,7 +5,7 @@ export type SimpleAction = ReduxAction<string>;
 
 export type ActionCreator = () => SimpleAction;
 
-export type CreateActionCreator = (type: string) => () => SimpleAction;
+type CreateActionCreator = (type: string) => () => SimpleAction;
 export const createActionCreator: CreateActionCreator = type => () => ({
   type,
 });
@@ -18,7 +18,7 @@ export type PayloadActionCreator<Payload> = (
   payload: Payload,
 ) => PayloadAction<Payload>;
 
-export type CreatePayloadActionCreator = <Payload>(
+type CreatePayloadActionCreator = <Payload>(
   type: string,
 ) => (payload: Payload) => PayloadAction<Payload>;
 export const createPayloadActionCreator: CreatePayloadActionCreator = type => payload => ({
@@ -26,7 +26,7 @@ export const createPayloadActionCreator: CreatePayloadActionCreator = type => pa
   payload,
 });
 
-export type Action<Payload> = SimpleAction | PayloadAction<Payload>;
+export type Action<Payload> = SimpleAction & PayloadAction<Payload>;
 
 const prefixActionType = (slice: string) => (actionType: string) =>
   slice.concat(' -> ').concat(actionType);
