@@ -23,6 +23,13 @@
   },
   "homepage": "https://github.com/mytee306/redux-utils#readme",
   "devDependencies": {
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.0.8",
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
     "typescript": "^3.4.3"
   },
   "dependencies": {
